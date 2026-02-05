@@ -60,4 +60,13 @@ async def main():
         msg = (
             "⚠️ iDATA İtalya için durum değişti!\n\n"
             f"Önceki: {last_status}\n"
-            f"Şimdi: {current_status}\n\n"_
+            f"Şimdi: {current_status}\n\n"
+            "👉 Kontrol etmeni öneririm."
+        )
+        await notify(msg)
+
+    save_status(current_status)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
