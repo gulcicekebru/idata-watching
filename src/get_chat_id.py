@@ -1,14 +1,20 @@
-from telegram import Bot
+import asyncio
 import yaml
+from telegram import Bot
 
+# settings.yaml oku
 with open("config/settings.yaml", "r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
 
-bot = Bot(token=config["telegram"]["token"])
+BOT_TOKEN = config["telegram"]["token"]
 
-updates = bot.get_updates()
+async def main():
+    bot = Bot(token=BOT_TOKEN)
+    updates = await bot.get_updates()
 
-for update in updates:
-    if update.message:
-        print("Chat ID:", update.message.chat.id)
-        print("Text:", update.message.text)
+    for update in updates:
+        if update.message:
+            print("Chat ID:", update.message.chat_id)
+
+if __name__ == "__main__":
+    asyncio.run(main())
