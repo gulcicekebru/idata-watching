@@ -221,3 +221,10 @@ playwright/.cache/
 .DS_Store
 Thumbs.db
 
+# runtime status
+last_status.txt
+
+# virtual env
+.venv/
+
+
