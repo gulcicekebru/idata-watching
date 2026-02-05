@@ -1,22 +1,16 @@
 import requests
 import yaml
-import asyncio
-from telegram import Bot
 from datetime import datetime
 from pathlib import Path
 from telegram_notifier import send_message
-from datetime import datetime
 
-STATUS_FILE = Path("last_status.txt")
-
-
-# config oku
+# =====================
+# CONFIG
+# =====================
 with open("config/settings.yaml", "r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
 
 URL = config["idata"]["login_url"]
-BOT_TOKEN = config["telegram"]["token"]
-CHAT_ID = config["telegram"]["chat_id"]
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36",
@@ -25,16 +19,18 @@ HEADERS = {
     "Connection": "keep-alive"
 }
 
+STATUS_FILE = Path("last_status.txt")
 
-STATUS_FILE = "last_status.txt"
-
-
+# =====================
+# CORE LOGIC
+# =====================
 def get_current_status():
     try:
         r = requests.get(URL, headers=HEADERS, timeout=20)
         return r.status_code
     except Exception as e:
         return f"error:{e}"
+
 
 def check_status_change():
     current_status = get_current_status()
@@ -57,50 +53,8 @@ def check_status_change():
         print(f"[{datetime.now()}] Durum aynı: {current_status}")
 
 
-
-def get_last_status():
-    try:
-        with open(STATUS_FILE, "r") as f:
-            return f.read().strip()
-    except FileNotFoundError:
-        return None
-
-
-def save_status(status):
-    with open(STATUS_FILE, "w") as f:
-        f.write(str(status))
-
-
-async def notify(message):
-    bot = Bot(token=BOT_TOKEN)
-    await bot.send_message(chat_id=CHAT_ID, text=message)
-
-
-async def main():
-    current_status = get_current_status()
-    last_status = get_last_status()
-
-    print(f"[{datetime.now()}] Status:", current_status)
-
-    if last_status is None:
-        save_status(current_status)
-        return
-
-    if str(current_status) != str(last_status):
-        msg = (
-            "⚠️ iDATA İtalya için durum değişti!\n\n"
-            f"Önceki: {last_status}\n"
-            f"Şimdi: {current_status}\n\n"
-            "👉 Kontrol etmeni öneririm."
-        )
-        await notify(msg)
-
-    save_status(current_status)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
-
+# =====================
+# ENTRY POINT
+# =====================
 if __name__ == "__main__":
     check_status_change()
-
