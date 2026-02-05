@@ -13,9 +13,12 @@ BOT_TOKEN = config["telegram"]["token"]
 CHAT_ID = config["telegram"]["chat_id"]
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Connection": "keep-alive"
 }
+
 
 STATUS_FILE = "last_status.txt"
 
