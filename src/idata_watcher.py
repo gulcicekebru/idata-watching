@@ -3,6 +3,12 @@ import yaml
 import asyncio
 from telegram import Bot
 from datetime import datetime
+from pathlib import Path
+from telegram_notifier import send_message
+from datetime import datetime
+
+STATUS_FILE = Path("last_status.txt")
+
 
 # config oku
 with open("config/settings.yaml", "r", encoding="utf-8") as f:
@@ -29,6 +35,27 @@ def get_current_status():
         return r.status_code
     except Exception as e:
         return f"error:{e}"
+
+def check_status_change():
+    current_status = get_current_status()
+
+    if STATUS_FILE.exists():
+        last_status = STATUS_FILE.read_text().strip()
+    else:
+        last_status = None
+
+    if str(current_status) != str(last_status):
+        message = (
+            f"🚨 iDATA durum değişti!\n\n"
+            f"Önce: {last_status}\n"
+            f"Şimdi: {current_status}\n"
+            f"Tarih: {datetime.now()}"
+        )
+        send_message(message)
+        STATUS_FILE.write_text(str(current_status))
+    else:
+        print(f"[{datetime.now()}] Durum aynı: {current_status}")
+
 
 
 def get_last_status():
@@ -73,3 +100,7 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+if __name__ == "__main__":
+    check_status_change()
+
