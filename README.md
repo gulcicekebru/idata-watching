@@ -30,6 +30,7 @@ It is designed to run **automatically in the background** using **Windows Task S
 
 ## 📁 Project Structure
 
+<pre>
 idata-watching/
 ├── src/
 │ ├── idata_watcher.py # Main logic that checks iDATA page status
@@ -42,3 +43,4 @@ idata-watching/
 ├── .gitignore # Files and folders ignored by git
 ├── README.md # Project documentation
 └── requirements.txt # Python dependencies
+</pre>
