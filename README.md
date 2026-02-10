@@ -44,3 +44,6 @@ idata-watching/
 ├── README.md # Project documentation
 └── requirements.txt # Python dependencies
 </pre>
+
+
+## ⚠️ Educational & personal use only
