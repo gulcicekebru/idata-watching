@@ -31,15 +31,14 @@ It is designed to run **automatically in the background** using **Windows Task S
 ## 📁 Project Structure
 
 idata-watching/
-│
 ├── src/
-│ ├── idata_watcher.py # Main watcher logic
-│ ├── telegram_notifier.py # Telegram messaging module
-│ └── get_chat_id.py # Helper to retrieve Telegram chat ID
+│ ├── idata_watcher.py # Main logic that checks iDATA page status
+│ ├── telegram_notifier.py # Sends notifications via Telegram bot
+│ └── get_chat_id.py # Utility script to retrieve Telegram chat ID
 │
 ├── config/
-│ └── settings.example.yaml # Example config file
+│ └── settings.example.yaml # Example configuration file (no secrets)
 │
-├── .gitignore
-├── README.md
-└── requirements.txt
+├── .gitignore # Files and folders ignored by git
+├── README.md # Project documentation
+└── requirements.txt # Python dependencies
