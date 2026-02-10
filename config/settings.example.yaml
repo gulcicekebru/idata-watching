@@ -1,0 +1,6 @@
+telegram:
+  token: "PUT_YOUR_BOT_TOKEN_HERE"
+  chat_id: "PUT_YOUR_CHAT_ID_HERE"
+
+idata:
+  login_url: "https://visa.vfsglobal.com/tur/tr/ita/"
