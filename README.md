@@ -6,6 +6,33 @@ It is designed to run **automatically in the background** using **Windows Task S
 
 ---
 
+## 🧠 What I Built in This Project
+
+In this project, I built an automated monitoring system to track the availability of the iDATA Italy visa page.
+
+Instead of attempting to bypass CAPTCHA or authentication mechanisms, I designed a lightweight and ethical solution that:
+- Periodically checks the public-facing page status
+- Detects meaningful changes in availability
+- Notifies the user instantly via a Telegram bot
+
+### Key Contributions
+- Designed a Python-based watcher that monitors HTTP status changes
+- Implemented state tracking to detect real changes instead of repeated alerts
+- Integrated Telegram Bot API for real-time notifications
+- Externalized sensitive configuration using YAML and `.gitignore`
+- Automated execution using Windows Task Scheduler
+
+### Technologies Used
+- Python
+- Requests
+- python-telegram-bot
+- YAML
+- Git & GitHub
+- Windows Task Scheduler
+
+This project reflects my ability to design practical automation tools, handle external integrations, and apply security-conscious development practices.
+
+
 ## ✨ Features
 
 - Periodically checks iDATA Italy visa page
