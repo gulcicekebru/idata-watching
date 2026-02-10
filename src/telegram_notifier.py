@@ -2,8 +2,14 @@ import yaml
 import asyncio
 from telegram import Bot
 
-with open("config/settings.yaml", "r", encoding="utf-8") as f:
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+CONFIG_PATH = BASE_DIR / "config" / "settings.yaml"
+
+with open(CONFIG_PATH, "r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
+
 
 BOT_TOKEN = config["telegram"]["token"]
 CHAT_ID = config["telegram"]["chat_id"]

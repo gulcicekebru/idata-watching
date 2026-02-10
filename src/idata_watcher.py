@@ -7,8 +7,14 @@ from telegram_notifier import send_message
 # =====================
 # CONFIG
 # =====================
-with open("config/settings.yaml", "r", encoding="utf-8") as f:
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+CONFIG_PATH = BASE_DIR / "config" / "settings.yaml"
+
+with open(CONFIG_PATH, "r", encoding="utf-8") as f:
     config = yaml.safe_load(f)
+
 
 URL = config["idata"]["login_url"]
 
@@ -39,6 +45,12 @@ def check_status_change():
         last_status = STATUS_FILE.read_text().strip()
     else:
         last_status = None
+
+    if str(current_status) == "403":
+        print(f"[{datetime.now()}] 403 alındı, alarm atlanıyor")
+        STATUS_FILE.write_text("403")
+        return
+
 
     if str(current_status) != str(last_status):
         message = (

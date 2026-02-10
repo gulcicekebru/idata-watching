@@ -227,4 +227,14 @@ last_status.txt
 # virtual env
 .venv/
 
+# Python
+.venv/
+__pycache__/
+
+# Secrets
+config/settings.yaml
+
+# Runtime
+last_status.txt
+
 
