@@ -55,6 +55,13 @@ This project reflects my ability to design practical automation tools, handle ex
 
 ---
 
+## 🛠 Contributing
+
+Bug reports, pull requests and suggestions are welcome!
+
+Please keep discussions respectful and focused on improvements.
+
+
 ## 📁 Project Structure
 
 <pre>
@@ -105,6 +112,8 @@ This project continuously monitors the iDATA Italy visa page and notifies the us
 6. **Automation**
    - The script is designed to run periodically (e.g. via Windows Task Scheduler)
    - No manual browser checks are required
+
+> ℹ️ You can adjust the check interval or minimize notifications by editing the watcher logic in `idata_watcher.py`.
 
 ### 🚨 Why HTTP Status Monitoring?
 
