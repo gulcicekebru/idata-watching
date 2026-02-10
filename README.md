@@ -45,5 +45,52 @@ idata-watching/
 └── requirements.txt # Python dependencies
 </pre>
 
+## ⚙️ How It Works
+
+This project continuously monitors the iDATA Italy visa page and notifies the user via Telegram when a change is detected.
+
+### 🔍 Workflow
+
+1. **Configuration**
+   - User creates a `settings.yaml` file based on `settings.example.yaml`
+   - Telegram bot token and chat ID are stored locally (never committed)
+
+2. **Status Check**
+   - The watcher sends an HTTP request to the iDATA Italy page
+   - A realistic browser `User-Agent` header is used
+   - The HTTP status code is extracted (e.g. `403`, `200`)
+
+3. **State Comparison**
+   - The current status is compared with the last known status
+   - The previous value is stored in `last_status.txt`
+
+4. **Change Detection**
+   - If the status changes (for example, from `403` to something else),
+     the system considers this a meaningful update
+
+5. **Telegram Notification**
+   - A Telegram message is sent instantly to the user
+   - The message includes:
+     - Previous status
+     - Current status
+     - Timestamp
+
+6. **Automation**
+   - The script is designed to run periodically (e.g. via Windows Task Scheduler)
+   - No manual browser checks are required
+
+### 🚨 Why HTTP Status Monitoring?
+
+iDATA heavily protects its pages with CAPTCHA and bot detection.
+Instead of bypassing these systems, this project:
+- Observes **surface-level availability**
+- Alerts the user when **manual action may be required**
+- Respects website security boundaries
+
+### 🛡️ Security Notes
+- No credentials or tokens are committed to the repository
+- Sensitive files are excluded via `.gitignore`
+- The project is intended for **personal and educational use only**
+
 
 ## ⚠️ Educational & personal use only
